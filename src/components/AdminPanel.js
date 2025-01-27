@@ -92,8 +92,7 @@ const AdminPanel = () => {
       </div>
       {
       Array.from({length:count},(_,i)=> <div className="flex flex-column p-4 border border-red-300 m-2" key={i}><h3>Email of approvers</h3>
-            <input type="text" placeholder="Enter Email" className="border border-black mx-2 p-2 rounded-md w-full " onChange={(e) => handleApproverChange(i, "emailId", e.target.value)}
-            /> 
+            <input type="text" placeholder="Enter Email" className="border border-black mx-2 p-2 rounded-md w-full " onChange={(e) => handleApproverChange(i, "emailId", e.target.value)}/> 
             <h3>First approver</h3>
             <input type="text" placeholder="Enter Name" className="border border-black mx-2 p-2 rounded-md w-full"  onChange={(e) => handleApproverChange(i, "firstName", e.target.value)}/>
             <h3>Last Name</h3>
