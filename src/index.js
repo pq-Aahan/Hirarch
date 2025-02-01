@@ -7,6 +7,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './components/Login';
 import ControlPanel from './components/ControlPanel';
 import AdminPanel from './components/AdminPanel';
+import GetUsers from './components/GetUsers';
+import UserEdit from './components/UserEdit';
 
 const appRouter = createBrowserRouter([
   {
@@ -23,6 +25,13 @@ const appRouter = createBrowserRouter([
   },{
     path: "/AdminPanel",
     element: <AdminPanel />,
+  },
+  {
+    path: "/GetUsers",
+    element: <GetUsers />,
+  },  {
+    path: "/UserEdit",
+    element: <UserEdit />,
   },
 ]);
 

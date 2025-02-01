@@ -28,7 +28,7 @@ const Login = () => {
                 localStorage.setItem("token", data.token);
                 localStorage.setItem("firstName", data.firstName);
                 localStorage.setItem("roleId", data.roleId); // Save roleId for role-based navigation
-
+                localStorage.setItem("_id", data.roleId);
                 // Redirect based on roleId
                 if (data.roleId === 1) {
                     navigate("/AdminPanel");
