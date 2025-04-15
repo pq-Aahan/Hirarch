@@ -13,6 +13,11 @@ const GetUsers = () => {
        console.log("User 1",user)
         navigate("/UserEdit")
     }
+
+    const handleBack = () => {
+        navigate("/login"); // 👈 or change to wherever you want to go back
+    };
+
     useEffect(() => {
         const fetchUsers = async () => {
             try {
@@ -45,8 +50,15 @@ const GetUsers = () => {
 
     return (
         <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">User List</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div className="flex justify-between items-center mb-4">
+                <h1 className="text-2xl font-bold">User List</h1>
+                <button
+                    onClick={handleBack}
+                    className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded shadow"
+                >
+                    Back
+                </button>
+            </div>            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {users.map((user) => (
                     <div
                         key={user._id}

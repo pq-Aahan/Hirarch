@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const AdminPanel = () => {
     const[count,setCount]=useState(0);
     const[companyName,setCompanyName]=useState("");
     const[approvers,setApprovers]=useState([]);
+    const navigate = useNavigate();
 
     const handleApproverChange = (index, field, value) => {
         const updatedApprovers = [...approvers];
@@ -64,9 +66,23 @@ const AdminPanel = () => {
         }
       };
 
+      const handleBack = () => {
+        navigate("/SelectLogin");
+    };
+
+
+
   return (
     <div className="flex items-center flex-col border border-green-950">
-      <h1 className="font-bold bg-pink-200 border border-black w-full text-center">Admin panel</h1>
+            <div className="flex justify-between w-full items-center bg-pink-200 border border-black p-4">
+                <h1 className="font-bold text-center w-full">Admin Panel</h1>
+                <button
+                    onClick={handleBack}
+                    className="bg-gray-500 text-white px-4 py-1 rounded hover:bg-gray-600 ml-auto"
+                >
+                    Back
+                </button>
+            </div>
       <div className="flex flex-row p-4">
       <h2>Name of company: </h2>
       <input

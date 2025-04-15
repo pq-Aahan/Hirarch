@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ← import
 
 const ControlPanel = () => {
     const [comment, setComment] = useState("");
-
+    const navigate = useNavigate();
     const handleApprove = async () => {
         const emailId = localStorage.getItem("emailId"); 
         console.log("Email ID from localStorage:", emailId); // Debug log
@@ -35,7 +36,9 @@ const ControlPanel = () => {
             alert("An error occurred while approving.");
         }
     };
-
+    const handleBack = () => {
+        navigate("/login"); // ← navigate to login page
+    };
     const UserName = localStorage.getItem("firstName") || "User";
 
     return (
@@ -53,13 +56,21 @@ const ControlPanel = () => {
                     onChange={(e) => setComment(e.target.value)}
                 />
 
-                <button
-                    className="text-lg font-medium border border-blue-300 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
-                    type="submit"
-                    onClick={handleApprove}
-                >
-                    Approve
-                </button>
+<div className="flex justify-between w-full">
+                    <button
+                        className="text-lg font-medium border border-gray-300 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition-colors"
+                        onClick={handleBack}
+                    >
+                        Back
+                    </button>
+
+                    <button
+                        className="text-lg font-medium border border-blue-300 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+                        onClick={handleApprove}
+                    >
+                        Approve
+                    </button>
+                </div>
             </div>
         </div>
     );

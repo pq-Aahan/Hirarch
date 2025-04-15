@@ -47,11 +47,21 @@ const UserEdit = () => {
             alert("An error occurred while updating.");
         }
     };
+    const handleBack = () => {
+        navigate("/getUsers");
+    };
 
     return (
         <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">Edit User</h1>
-            <div className="bg-white shadow p-6 rounded-lg border border-gray-200">
+<div className="flex justify-between items-center mb-4">
+                <h1 className="text-2xl font-bold">Edit User</h1>
+                <button
+                    onClick={handleBack}
+                    className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded shadow"
+                >
+                    Back
+                </button>
+            </div>            <div className="bg-white shadow p-6 rounded-lg border border-gray-200">
                 <label className="block mb-2">
                     <span className="font-semibold">First Name:</span>
                     <input type="text" name="firstName" value={user.firstName} onChange={handleChange} className="border p-2 w-full rounded" />
