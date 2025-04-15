@@ -3,12 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import ControlPanel from './components/ControlPanel';
 import AdminPanel from './components/AdminPanel';
 import GetUsers from './components/GetUsers';
 import UserEdit from './components/UserEdit';
+import SelectLogin from "./components/SelectLogin"; 
+
+
+const isAuthenticated = () => {
+  return !!localStorage.getItem("userPassword"); // Ensure password is stored after login
+};
+
+const ProtectedRoute = ({ element }) => {
+  return isAuthenticated() ? element : <Navigate to="/login" />;
+};
+
 
 const appRouter = createBrowserRouter([
   {
@@ -21,18 +32,24 @@ const appRouter = createBrowserRouter([
   },
   {
     path: "/ControlPanel",
-    element: <ControlPanel />,
-  },{
+    element: <ProtectedRoute element={<ControlPanel />} />,
+  },
+  {
     path: "/AdminPanel",
-    element: <AdminPanel />,
+    element: <ProtectedRoute element={<AdminPanel />} />,
   },
   {
     path: "/GetUsers",
-    element: <GetUsers />,
-  },  {
-    path: "/UserEdit",
-    element: <UserEdit />,
+    element: <ProtectedRoute element={<GetUsers />} />,
   },
+  {
+    path: "/UserEdit",
+    element: <ProtectedRoute element={<UserEdit />} />,
+  },
+  {
+    path:"/selectlogin",
+    element: <ProtectedRoute element={<SelectLogin />} />,
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

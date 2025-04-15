@@ -15,28 +15,30 @@ const Login = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ emailId: email, password }), // Send data to backend
+                body: JSON.stringify({ emailId: email, password }), 
             });
 
             const data = await response.json();
             console.log("API Response:", data);
 
             if (response.ok) {
-                // Save token in localStorage or sessionStorage
-                console.log("API Response:", data); // Debug log API response
+                console.log("API Response:", data); 
 
                 localStorage.setItem("token", data.token);
                 localStorage.setItem("firstName", data.firstName);
-                localStorage.setItem("roleId", data.roleId); // Save roleId for role-based navigation
+                localStorage.setItem("roleId", data.roleId); 
                 localStorage.setItem("_id", data.roleId);
-                // Redirect based on roleId
+                localStorage.setItem("userPassword", data.password); 
+                localStorage.setItem("emailId", data.emailId); // ✅ Use this if your backend returns emailId
+                if (!data.emailId) localStorage.setItem("emailId", email); 
+
                 if (data.roleId === 1) {
-                    navigate("/AdminPanel");
+                    navigate("/selectlogin"); 
                 } else {
                     navigate("/ControlPanel");
                 }
+                
             } else {
-                // Show error message
                 setError(data.message || "Login failed");
             }
         } catch (err) {
@@ -74,7 +76,7 @@ const Login = () => {
                     <button
                         className="rounded-xl bg-blue-500 text-white p-2 w-20 hover:bg-blue-600"
                         type="button"
-                        onClick={handleLogin} // Call login function on click
+                        onClick={handleLogin}
                     >
                         Login
                     </button>
