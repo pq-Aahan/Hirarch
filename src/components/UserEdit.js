@@ -26,7 +26,7 @@ const UserEdit = () => {
 
     const handleUpdate = async () => {
         try {
-            const response = await fetch(`http://localhost:5001/api/updateUser/${user._id}`, {
+            const response = await fetch(`https://hirarch-backend.vercel.app/api/updateUser/${user._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
